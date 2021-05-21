@@ -1,9 +1,10 @@
 ## Bioinformatics Workshop 2021 - S13/S6 Long-read Genomics, Metagenomics and Amplicon Analysis_Bonito
 ### Tutorial/Practical
 
-#### Pierre Ramond, Swan LS Sow
-#### Thursday, 27th May 2021
+##### Pierre Ramond, Swan LS Sow
+##### Thursday, 27th May 2021
 
+#### 0. Background
 Besides the ease, simplicity, speed and relatively lower cost of long-reads 3rd generation sequencing tech, one of the key advantages of longer amplicons lies in its potential of increased taxonomic resolution that cannot be achieved by targeted 16S sub-region sequencing used in short-read sequencing platforms (Johnson et.al. 2019). Longer reads also allow significant improvements of genome assemblies (Koren and Phillippy, 2015).
 
 The primary aim of this tutorial is to illustrate the benefits of longer amplicons by comparing the quality of taxonomic assignments of long versus short amplicons of the same sequences.
