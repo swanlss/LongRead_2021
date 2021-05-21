@@ -11,5 +11,4 @@ First let's get some data into the project folder. All files are located in:
 
 ```
 /export/lv4/projects/workshop_2021/S12_LongRead
-
 ```
