@@ -48,3 +48,15 @@ cutadapt -j 0 -e 0.3 -O 12 \
   -o longread_wk/16S_sub_V4_806R.fasta \
 16S.fastq
 ```
+
+Or alternatively, the 515F-926R primer pair:
+
+```
+cutadapt -j 0 -e 0.3 -O 12 \
+  --discard-untrimmed \
+  -a GTGYCAGCMGCCGCGGTAA...AAACTYAAAKRAATTGRCGG \
+  -a CCGYCAATTYMTTTRAGTTT...TTACCGCGGCKGCTGRCAC \
+  -M 600 \
+  -o longread_wk/16S_sub_V4_926R.fasta \
+16S.fastq
+```
