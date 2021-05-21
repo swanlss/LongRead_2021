@@ -15,5 +15,9 @@ We will work with long-read 16S and 18S amplicon dataset generated from samples 
 First let's get some data into the project folder. Login to ADA, and *cd* to the following directory where all files required for this tutorial are located:
 
 ```
-/export/lv4/projects/workshop_2021/S12_LongRead
+/export/lv4/projects/workshop_2021/S12_LongRead/
 ```
+
+To be efficient with disk space, please make links from the sequence data fasta files in */export/lv4/projects/workshop_2021/S12_LongRead/reads* to your working folders instead of copying them over.
+
+The original reads generated from the MinION sequencing are ~1100 bp for the 16S amplicons and ~1200 bp for the 18S amplicons.
