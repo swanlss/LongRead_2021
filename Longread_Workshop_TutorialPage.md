@@ -1,4 +1,4 @@
-## Bioinformatics Workshop 2021 - S13/S6 Long-read Genomics, Metagenomics and Amplicon Analysis_Bonito
+## Bioinformatics Workshop 2021 - S13 Long-read Genomics, Metagenomics and Amplicon Analysis_Bonito
 ### Tutorial/Practical
 
 ##### *Pierre Ramond, Swan LS Sow*
@@ -15,9 +15,36 @@ We will work with long-read 16S and 18S amplicon dataset generated from samples 
 First let's get some data into the project folder. Login to ADA, and *cd* to the following directory where all files required for this tutorial are located:
 
 ```
-/export/lv4/projects/workshop_2021/S12_LongRead/
+cd /export/lv4/projects/workshop_2021/S13_LongRead/
 ```
 
-To be efficient with disk space, please make links from the sequence data fasta files in */export/lv4/projects/workshop_2021/S12_LongRead/reads* to your working folders instead of copying them over.
+To be efficient with disk space, please make links from the sequence data fasta files to your working folders instead of copying them over.
 
-The original reads generated from the MinION sequencing are ~1100 bp for the 16S amplicons and ~1200 bp for the 18S amplicons.
+```
+ln -s /export/lv4/projects/workshop_2021/S13_LongRead/reads/ /export/lv3/scratch/workshop_2021/Users/<your_username>
+```
+
+#### 2. Extracting specific sub-regions and generating length gradients
+The original reads generated from the MinION sequencing are ~1100 bp for the 16S amplicons and ~1200 bp for the 18S amplicons. We will use *cutadapt* to trim the sequences to the desired fragment lengths and extract specific 16S and 18S rRNA gene sub-regions. For example, to extract the 18S V4 region, we the primer sequences that were developed by Stoeck et.al. (2010) as the adapter sequence parameter in *cutadapt* as follows:
+
+```
+cutadapt -j 0 -e 0.3 -O 12 \
+  --discard-untrimmed \
+  -a CCAGCASCYGCGGTAATTCC...TYRATCAAGAACGAAAGT \
+  -a ACTTTCGTTCTTGATYRA...GGAATTACCGCRGSTGCTGG \
+  -M 600 \
+  -o longread_wk/18S_sub_V4_STOECK.fasta \
+18S.fastq
+```
+
+The 16S V4 region can be extracted by using the 515F-806R primer sequences developed by Caporaso et.al. (2011):
+
+```
+cutadapt -j 0 -e 0.3 -O 12 \
+  --discard-untrimmed \
+  -a GTGCCAGCMGCCGCGGTAA...ATTAGAWADDDBDGTAGTCC \
+  -a GGACTACHVHHHTWTCTAAT...TTACCGCGGCKGCTGGCAC \
+  -M 600 \
+  -o longread_wk/16S_sub_V4_806R.fasta \
+16S.fastq
+```
