@@ -5,7 +5,7 @@
 ##### *Pierre Ramond, Swan LS Sow*
 ##### *Thursday, 27th May 2021*
 
-#########################################################################################################################################
+###############################################################################################################
 
 ### 0. Background
 Besides the ease, simplicity, speed and relatively lower cost of long-reads generated from 3rd generation sequencing tech, one of the key advantages of longer amplicons lies in its potential of increased taxonomic resolution that cannot be achieved by targeted 16S sub-region sequencing used in short-read sequencing platforms (Johnson et.al. 2019). Longer reads also allow significant improvements of genome assemblies (Koren and Phillippy, 2015).
