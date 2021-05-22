@@ -260,3 +260,12 @@ do
 mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=$i, reference=pr2_version_4.13.0_18S_mothur.fasta, taxonomy=pr2_version_4.13.0_18S_mothur.tax, cutoff=80)"
 done
 ```
+<p>&nbsp;</p>
+
+We'll now graphically compare the effects of long versus short amplicons of the same sequences on the quality of taxonomic assignments. We'll do this in R studio, with an R script that can be found in:
+
+```
+/export/lv4/projects/workshop_2021/S13_LongRead/scripts/LONGREAD_BIOINFO_WK2.R
+```
+
+To launch R studio in ADA: http://ada.nioz.nl:8787/ and login with your credentials. 
