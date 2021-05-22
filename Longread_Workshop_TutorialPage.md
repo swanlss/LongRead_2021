@@ -262,7 +262,7 @@ done
 ```
 <p>&nbsp;</p>
 
-### 5. Compare taxonomic assignment quality of long reads to sub-region and length gradient fragments
+### 5. Compare taxonomic assignment quality
 
 We'll now graphically compare the effects of long versus short amplicons of the same sequences on the quality of taxonomic assignments. We'll do this in R studio, with an R script that can be found in:
 
