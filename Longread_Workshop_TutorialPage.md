@@ -117,7 +117,7 @@ cp 18S_sub_V4_STOECK.fasta sub_regions
 </details>
 <p>&nbsp;</p>
 We'll use **MOTHUR** to classify our sequences with the silva.nr_v138 database for the 16S sequences and pr2_version_4.13.0_18S for the 18S sequences. MOTHUR works better with sequences in the fasta format, so we'll first convert all fastq sequences to fasta format with **seqtk**:
-
+<p>&nbsp;</p>
 ```
 cd sub_regions
 
