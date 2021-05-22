@@ -128,7 +128,7 @@ seqtk seq -A 16S_og_reads_806R_trimm.fastq > `ls 16S_og_reads_806R_trimm.fastq |
 seqtk seq -A 18S_og_reads_trimm.fastq > `ls 18S_og_reads_trimm.fastq | sed 's/\.fastq/\.fasta/'`
 ```
 
-Classify the sequences with *MOTHUR*, this should take ~ 5-10 minutes.
+Classify the sequences with **MOTHUR** using the default *wang* method (Wang et.al., 2007). This should take ~ 5-10 minutes. The cutoff value indicates that only classified sequences with bootstrap values >= 80% will be returned.
 
 ```
 # 16S
@@ -147,4 +147,23 @@ mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_B
 mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/sub_regions/18S_sub_V4_STOECK.fasta, reference=pr2_version_4.13.0_18S_mothur.fasta,taxonomy=pr2_version_4.13.0_18S_mothur.tax, cutoff=80)"
 ```
 
-### X. Generating length gradients
+
+### 4. Generating length gradient fragments from the trimmed long reads
+
+To further test the theory, we'll generate sequence fragments from the original long reads with 100bp length variations. Make a new folder for the length gradient fragments, and then subfolders within that folder for the 16S and 18S fragments. Make a copy of the fasta file containing the trimmed long reads.
+
+<details>
+<summary>
+<a class="btnfire small stroke"><em class="fas fa-chevron-circle-down"></em>&nbsp;&nbsp;Show me the code!</a>    
+</summary>
+
+```
+mkdir Length_gradients
+mkdir Length_gradients/18S
+mkdir Length_gradients/16S
+
+cp 18S_og_reads_trimm.fastq Length_gradients/18S/18S_trim_original.fastq
+cp 16S_og_reads_806R_trimm.fastq Length_gradients/16S/16S_trim_original.fastq
+```
+
+</details>
