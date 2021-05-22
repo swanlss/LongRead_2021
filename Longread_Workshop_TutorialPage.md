@@ -118,6 +118,33 @@ cp 18S_sub_V4_STOECK.fasta sub_regions
 </details>
 
 
-We'll use MOTHUR
+We'll use **MOTHUR** to classify our sequences with the silva.nr_v138 database for the 16S sequences and pr2_version_4.13.0_18S for the 18S sequences. MOTHUR works better with sequences in the fasta format, so we'll first convert all fastq sequences to fasta format with **seqtk**:
+
+```
+cd sub_regions
+
+seqtk seq -A 16S_og_reads_926R_trimm.fastq > `ls 16S_og_reads_926R_trimm.fastq | sed 's/\.fastq/\.fasta/'`
+seqtk seq -A 16S_og_reads_806R_trimm.fastq > `ls 16S_og_reads_806R_trimm.fastq | sed 's/\.fastq/\.fasta/'`
+seqtk seq -A 18S_og_reads_trimm.fastq > `ls 18S_og_reads_trimm.fastq | sed 's/\.fastq/\.fasta/'`
+```
+
+Classify the sequences with *MOTHUR*, this should take ~ 5-10 minutes.
+
+```
+# 16S
+mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/sub_regions/16S_og_reads_806R_trimm.fasta, reference=silva.nr_v138_1.align, taxonomy=silva.nr_v138_1.tax, cutoff=80)"
+
+mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/sub_regions/16S_og_reads_926R_trimm.fasta, reference=silva.nr_v138_1.align, taxonomy=silva.nr_v138_1.tax, cutoff=80)"
+
+mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/sub_regions/16S_sub_V4_806R.fasta, reference=silva.nr_v138_1.align, taxonomy=silva.nr_v138_1.tax, cutoff=80)"
+
+mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/sub_regions/16S_sub_V4_926R.fasta, reference=silva.nr_v138_1.align, taxonomy=silva.nr_v138_1.tax, cutoff=80)"
+```
+```
+# 18S
+mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/sub_regions/18S_og_reads_trimm.fasta, reference=pr2_version_4.13.0_18S_mothur.fasta,taxonomy=pr2_version_4.13.0_18S_mothur.tax, cutoff=80)"
+
+mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/sub_regions/18S_sub_V4_STOECK.fasta, reference=pr2_version_4.13.0_18S_mothur.fasta,taxonomy=pr2_version_4.13.0_18S_mothur.tax, cutoff=80)"
+```
 
 ### X. Generating length gradients
