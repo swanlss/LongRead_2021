@@ -150,7 +150,7 @@ mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_B
 
 ### 4. Generating length gradient fragments from the trimmed long reads
 
-To further test the theory, we'll generate sequence fragments from the original long reads with 100bp length variations. Make a new folder for the length gradient fragments, and then subfolders within that folder for the 16S and 18S fragments. Make a copy of the fasta file containing the trimmed long reads.
+To further test the theory, we'll generate sequence fragments from the original long reads with 100bp length variations. Make a new folder for the length gradient fragments, and then subfolders within that folder for the 16S and 18S fragments. Make a copy of the fastq file containing the trimmed long reads.
 
 <details>
 <summary>
@@ -168,7 +168,7 @@ cp 16S_og_reads_806R_trimm.fastq Length_gradients/16S/16S_trim_original.fastq
 
 </details><p>&nbsp;</p>
 
-Use **cutadapt** to trim the fragment to different lengths:
+Then use **cutadapt** to trim the fragment to different lengths:
 
 
 ```
@@ -197,4 +197,64 @@ cutadapt -l 700 -o 18S_trim_700bp.fastq 18S_trim_original.fastq
 cutadapt -l 800 -o 18S_trim_800bp.fastq 18S_trim_original.fastq
 cutadapt -l 900 -o 18S_trim_900bp.fastq 18S_trim_original.fastq
 cutadapt -l 1000 -o 18S_trim_1000bp.fastq 18S_trim_original.fastq
+```
+
+We'll add the fragment size to the sequence header so we can easily identify the different size fragments of the same sequence:
+
+```
+# 16S:
+sed -i '1~4s/\s\+/_16S_trim_100bp.fastq /' 16S_trim_100bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_200bp.fastq /' 16S_trim_200bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_300bp.fastq /' 16S_trim_300bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_400bp.fastq /' 16S_trim_400bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_500bp.fastq /' 16S_trim_500bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_600bp.fastq /' 16S_trim_600bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_700bp.fastq /' 16S_trim_700bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_800bp.fastq /' 16S_trim_800bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_900bp.fastq /' 16S_trim_900bp.fastq
+sed -i '1~4s/\s\+/_16S_trim_1000bp.fastq /' 16S_trim_1000bp.fastq
+sed -i '1~4s/\s\+/_original /' 16S_trim_original.fastq
+```
+
+```
+#18S:
+sed -i '1~4s/\s\+/_18S_trim_100bp.fastq /' 18S_trim_100bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_200bp.fastq /' 18S_trim_200bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_300bp.fastq /' 18S_trim_300bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_400bp.fastq /' 18S_trim_400bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_500bp.fastq /' 18S_trim_500bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_600bp.fastq /' 18S_trim_600bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_700bp.fastq /' 18S_trim_700bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_800bp.fastq /' 18S_trim_800bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_900bp.fastq /' 18S_trim_900bp.fastq
+sed -i '1~4s/\s\+/_18S_trim_1000bp.fastq /' 18S_trim_1000bp.fastq
+sed -i '1~4s/\s\+/_original /' 18S_trim_original.fastq
+```
+
+Again, we'll need to convert all the the fastq files to fasta before the taxonomic annotation step. We'll use a loop to repeat the conversion for all the fastq files in the folder.
+
+```
+for i in /export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/Length_gradients/*/*fastq;
+do
+seqtk seq -A $i > `ls $i | sed 's/\.fastq/\.fasta/'`;
+done
+```
+
+Finally, let's assign taxonomy for all sequences of the different length gradients:
+
+```
+# Assign taxonomy for all fasta files 16S folder
+
+for i in /export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/Length_gradients/16S/*.fasta;
+do
+mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=$i, reference=silva.nr_v138_1.align, taxonomy=silva.nr_v138_1.tax, cutoff=80)"
+done
+```
+
+```
+# Assign taxonomy for all fasta files 18S folder
+for i in /export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/Length_gradients/18S/*.fasta;
+do
+mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=$i, reference=pr2_version_4.13.0_18S_mothur.fasta, taxonomy=pr2_version_4.13.0_18S_mothur.tax, cutoff=80)"
+done
 ```
