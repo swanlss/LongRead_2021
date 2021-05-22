@@ -1,4 +1,4 @@
-## Bioinformatics Workshop 2021 - S13 Long-read Genomics, Metagenomics and Amplicon Analysis_Bonito
+## Bioinformatics Workshop 2021 - S13 Long-read Genomics, Metagenomics and Amplicon Analysis
 ### Tutorial/Practical
 
 ##### *Pierre Ramond, Swan LS Sow*
@@ -62,20 +62,16 @@ cutadapt -j 0 -e 0.3 -O 12 \
 ```
 
 Now, let's make a list of the reads that matched the adapter(primer) sequences from the *cutadapt* step above. You are encouraged to figure out how to do this based on unix commands covered in the previous workshop sessions, but for simplicity we have also provided the code below:
+
+<details>
+<summary>
+<a class="btnfire small stroke"><em class="fas fa-chevron-circle-down"></em>&nbsp;&nbsp;Show code</a>    
+</summary>
 ```
 grep ">" longread_wk2/18S_sub_V4_STOECK.fasta | sed 's/>//' | sed 's/\s.*$//' > longread_wk2/18S_reads_ID.txt
 grep ">" longread_wk2/16S_sub_V4_806R.fasta | sed 's/>//' | sed 's/\s.*$//' > longread_wk2/16S_806R_reads_ID.txt
 grep ">" longread_wk2/16S_sub_V4_926R.fasta | sed 's/>//' | sed 's/\s.*$//' > longread_wk2/16S_926R_reads_ID.txt
 ```
-
-<details>
-<summary>
-<a class="btnfire small stroke"><em class="fas fa-chevron-circle-down"></em>&nbsp;&nbsp;Show all details</a>    
-</summary>
-This text is used as a placeholder or a tk note. Words that will follow won't make any sense and this is fine. At the moment, the goal is to build a structure for our site.
-
-Cheers!
-[Pascal](https://twitter.com/askpascalandy/)
 
 </details>
 
