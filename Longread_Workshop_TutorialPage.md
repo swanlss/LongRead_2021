@@ -166,4 +166,34 @@ cp 18S_og_reads_trimm.fastq Length_gradients/18S/18S_trim_original.fastq
 cp 16S_og_reads_806R_trimm.fastq Length_gradients/16S/16S_trim_original.fastq
 ```
 
-</details>
+</details><p>&nbsp;</p>
+
+Use **cutadapt** to trim the fragment to different lengths:
+
+```
+# 16S
+cutadapt -l 100 -o 16S_trim_100bp.fastq 16S_trim_original.fastq
+cutadapt -l 200 -o 16S_trim_200bp.fastq 16S_trim_original.fastq
+cutadapt -l 300 -o 16S_trim_300bp.fastq 16S_trim_original.fastq
+cutadapt -l 400 -o 16S_trim_400bp.fastq 16S_trim_original.fastq
+cutadapt -l 500 -o 16S_trim_500bp.fastq 16S_trim_original.fastq
+cutadapt -l 600 -o 16S_trim_600bp.fastq 16S_trim_original.fastq
+cutadapt -l 700 -o 16S_trim_700bp.fastq 16S_trim_original.fastq
+cutadapt -l 800 -o 16S_trim_800bp.fastq 16S_trim_original.fastq
+cutadapt -l 900 -o 16S_trim_900bp.fastq 16S_trim_original.fastq
+cutadapt -l 1000 -o 16S_trim_1000bp.fastq 16S_trim_original.fastq
+```
+
+```
+# 18S
+cutadapt -l 100 -o 18S_trim_100bp.fastq 18S_trim_original.fastq
+cutadapt -l 200 -o 18S_trim_200bp.fastq 18S_trim_original.fastq
+cutadapt -l 300 -o 18S_trim_300bp.fastq 18S_trim_original.fastq
+cutadapt -l 400 -o 18S_trim_400bp.fastq 18S_trim_original.fastq
+cutadapt -l 500 -o 18S_trim_500bp.fastq 18S_trim_original.fastq
+cutadapt -l 600 -o 18S_trim_600bp.fastq 18S_trim_original.fastq
+cutadapt -l 700 -o 18S_trim_700bp.fastq 18S_trim_original.fastq
+cutadapt -l 800 -o 18S_trim_800bp.fastq 18S_trim_original.fastq
+cutadapt -l 900 -o 18S_trim_900bp.fastq 18S_trim_original.fastq
+cutadapt -l 1000 -o 18S_trim_1000bp.fastq 18S_trim_original.fastq
+```
