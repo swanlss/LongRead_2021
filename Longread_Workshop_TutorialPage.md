@@ -98,7 +98,7 @@ seqkit subseq -r 80:-80  16S_og_reads_926R.fastq > 16S_og_reads_926R_trimm.fastq
 ```
 <p>&nbsp;</p>
 
-### 3. Comparing taxonomy of the V4 sub-region fragments to the long reads
+### 3. Generating taxonomy of the V4 sub-region fragments
 
 First, make a directory for the sub-region fragments and copy all the trimmed sequence fragments to this folder
 
@@ -262,10 +262,12 @@ done
 ```
 <p>&nbsp;</p>
 
+### 5. Compare taxonomic assignment quality of long reads to sub-region and length gradient fragments
+
 We'll now graphically compare the effects of long versus short amplicons of the same sequences on the quality of taxonomic assignments. We'll do this in R studio, with an R script that can be found in:
 
 ```
 /export/lv4/projects/workshop_2021/S13_LongRead/scripts/LONGREAD_BIOINFO_WK2.R
 ```
 
-To launch R studio in ADA: http://ada.nioz.nl:8787/ and login with your credentials. 
+To launch R studio in ADA: http://ada.nioz.nl:8787/ and login with your credentials.
