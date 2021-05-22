@@ -4,12 +4,12 @@
 ##### *Pierre Ramond, Swan LS Sow*
 ##### *Thursday, 27th May 2021*
 
-#### 0. Background
+### 0. Background
 Besides the ease, simplicity, speed and relatively lower cost of long-reads generated from 3rd generation sequencing tech, one of the key advantages of longer amplicons lies in its potential of increased taxonomic resolution that cannot be achieved by targeted 16S sub-region sequencing used in short-read sequencing platforms (Johnson et.al. 2019). Longer reads also allow significant improvements of genome assemblies (Koren and Phillippy, 2015).
 
 The primary aim of this tutorial is to illustrate the benefits of longer amplicons by comparing the quality of taxonomic assignments of long versus short amplicons of the same sequences.
 
-#### 1. Dataset
+### 1. Dataset
 We will work with long-read 16S and 18S amplicon dataset generated from samples taken from the Wadden Sea and Southern Ocean in this practical session. 16S amplicons were generated with the primer set A519F-1492R-pB-3771 (Martijn et.al., 2019), while the 18S amplicons were generated with the primer set Euk528F-U1391R (Edgcomb et.al. 2011).
 
 First let's get some data into the project folder. Login to ADA, and *cd* to the following directory where all files required for this tutorial are located:
@@ -24,7 +24,8 @@ To be efficient with disk space, please make links from the sequence data fasta 
 ln -s /export/lv4/projects/workshop_2021/S13_LongRead/reads/ /export/lv3/scratch/workshop_2021/Users/<your_username>
 ```
 
-#### 2. Extracting specific sub-regions and generating length gradients
+
+### 2. Extracting specific sub-regions and generating length gradients
 The original reads generated from the MinION sequencing are ~1100 bp for the 16S amplicons and ~1200 bp for the 18S amplicons. We will use *cutadapt* to trim the sequences to the desired fragment lengths and extract specific 16S and 18S rRNA gene sub-regions. For example, to extract the 18S V4 region, we use the primer sequences that were developed by Stoeck et.al. (2010) as the adapter sequence parameter in *cutadapt* as follows:
 
 ```
