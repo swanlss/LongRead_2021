@@ -4,7 +4,8 @@
 
 ##### *Pierre Ramond, Swan LS Sow*
 ##### *Thursday, 27th May 2021*
-<p>&nbsp;</p>
+
+#########################################################################################################################################
 
 ### 0. Background
 Besides the ease, simplicity, speed and relatively lower cost of long-reads generated from 3rd generation sequencing tech, one of the key advantages of longer amplicons lies in its potential of increased taxonomic resolution that cannot be achieved by targeted 16S sub-region sequencing used in short-read sequencing platforms (Johnson et.al. 2019). Longer reads also allow significant improvements of genome assemblies (Koren and Phillippy, 2015).
@@ -253,6 +254,7 @@ done
 
 ```
 # Assign taxonomy for all fasta files 18S folder
+
 for i in /export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk2/Length_gradients/18S/*.fasta;
 do
 mothur "#set.dir(input=/export/lv4/projects/NIOZ200/Data/Analysis_Bonito/6_UMI_BINNING/longread_wk/databases/);classify.seqs(fasta=$i, reference=pr2_version_4.13.0_18S_mothur.fasta, taxonomy=pr2_version_4.13.0_18S_mothur.tax, cutoff=80)"
