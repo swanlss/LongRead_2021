@@ -25,7 +25,7 @@ ln -s /export/lv4/projects/workshop_2021/S13_LongRead/reads/ /export/lv3/scratch
 ```
 
 
-### 2. Extracting specific sub-regions and generating length gradients
+### 2. Extracting specific sub-regions of the 16S & 18S rRNA gene
 The original reads generated from the MinION sequencing are ~1100 bp for the 16S amplicons and ~1200 bp for the 18S amplicons. We will use *cutadapt* to trim the sequences to the desired fragment lengths and extract specific 16S and 18S rRNA gene sub-regions. For example, to extract the 18S V4 region, we use the primer sequences that were developed by Stoeck et.al. (2010) as the adapter sequence parameter in *cutadapt* as follows:
 
 ```
@@ -77,10 +77,43 @@ grep ">" longread_wk2/16S_sub_V4_926R.fasta | sed 's/>//' | sed 's/\s.*$//' > lo
 
 </details>
 
-We'll then extract the long reads that came through the *cutadapt* pipeline based on the list of reads with *seqkit's* *grep* function:
+
+We'll then extract the long reads that came through the *cutadapt* pipeline based on the list of reads with *seqkit*'s *grep* function:
 
 ```
 seqkit grep -f longread_wk2/18S_reads_ID.txt 18S.fastq -o longread_wk2/18S_og_reads.fastq
 seqkit grep -f longread_wk2/16S_806R_reads_ID.txt 16S.fastq -o longread_wk2/16S_og_reads_806R.fastq
 seqkit grep -f longread_wk2/16S_926R_reads_ID.txt 16S.fastq -o longread_wk2/16S_og_reads_926R.fastq
 ```
+
+Finally, we'll remove the adapters, primers and Unique Molecular Identifiers (UMIs) from the long reads by trimming the first and last 80 bp of each sequence with *seqkit*'s *subseq* function:
+
+```
+seqkit subseq -r 80:-80  18S_og_reads.fastq > 18S_og_reads_trimm.fastq
+seqkit subseq -r 80:-80  16S_og_reads_806R.fastq > 16S_og_reads_806R_trimm.fastq
+seqkit subseq -r 80:-80  16S_og_reads_926R.fastq > 16S_og_reads_926R_trimm.fastq
+```
+
+### 3. Comparing taxonomy of the V4 sub-region fragments to the long reads
+
+First, make a directory for the sub-region fragments and copy all the trimmed sequence fragments to this folder
+
+<details>
+<summary>
+<a class="btnfire small stroke"><em class="fas fa-chevron-circle-down"></em>&nbsp;&nbsp;Show me the code!</a>    
+</summary>
+
+```
+mkdir sub_regions
+
+cp 16S_og_reads_806R_trimm.fastq sub_regions
+cp 16S_og_reads_926R_trimm.fastq sub_regions
+cp 16S_sub_V4_806R.fasta sub_regions
+cp 16S_sub_V4_926R.fasta sub_regions
+cp 18S_og_reads_trimm.fastq sub_regions
+cp 18S_sub_V4_STOECK.fasta sub_regions
+```
+
+</details>
+
+### X. Generating length gradients
